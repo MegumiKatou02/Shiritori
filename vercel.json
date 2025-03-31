@@ -1,0 +1,4 @@
+{
+    "routes": [{ "src": "/api-viet/(.*)", "dest": "https://vietnamese-dictionary-api.vercel.app/$1" }]
+  }
+  

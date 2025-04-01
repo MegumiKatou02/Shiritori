@@ -80,7 +80,7 @@ function App() {
   
   return (
     <div className="dictionary-container">
-      <h1 className="app-title">Từ điển Tiếng Việt</h1>
+      <h1 className="app-title">Nối Từ Tiếng Việt</h1>
       
       <div className="search-container">
         <input 

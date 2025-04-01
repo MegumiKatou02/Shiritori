@@ -6,6 +6,7 @@
   --border-color: #e0e0e0;
   --success-color: #4caf50;
   --table-header: #f2f7ff;
+  --end-word-color: #e74c3c;
 }
 
 body {
@@ -76,6 +77,19 @@ body {
   background-color: rgba(74, 144, 226, 0.1);
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.result-item.end-word {
+  color: var(--end-word-color);
+  border-color: var(--end-word-color);
+}
+
+.result-item.end-word:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.result-item.end-word .copy-icon {
+  color: var(--end-word-color);
 }
 
 .word-text {

@@ -10,9 +10,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [copiedText, setCopiedText] = useState('')
   const notificationTimeoutRef = useRef<number | null>(null)
+  const cacheRef = useRef<Map<string, string[]>>(new Map())
 
   const list = async (word: string) => {
     if (!word.trim()) return;
+
+    if (cacheRef.current.has(word)) {
+      setResults(cacheRef.current.get(word) || []);
+      return;
+    }
     
     setIsLoading(true);
     try {
@@ -24,8 +30,13 @@ function App() {
           suggestion: true
         }
       });
+
+      const filteredResults = (response.data.suggestions || []).filter((item: string) => 
+        item.trim().split(/\s+/).length === 2
+      );
       
-      setResults(response.data.suggestions || []);
+      setResults(filteredResults);
+      cacheRef.current.set(word, filteredResults);
     } catch (error) {
       console.error('Error fetching data:', error);
       setResults([]);
@@ -66,10 +77,7 @@ function App() {
       }
     };
   }, []);
-
-  useEffect(() => {
-  }, []);
-
+  
   return (
     <div className="dictionary-container">
       <h1 className="app-title">Từ điển Tiếng Việt</h1>
